@@ -4,16 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TempSMS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1>TempSMS</h1>
-  <p>Temporary SMS Inbox</p>
+  <header class="header">
+    <h1>TempSMS</h1>
+    <p>Temporary SMS Inbox</p>
+  </header>
 
-  <button>Get Temporary Number</button>
+  <main class="container">
 
-  <h2>Inbox</h2>
-  <p>Waiting for messages...</p>
+    <div class="card">
+      <h2>Your Temporary Number</h2>
+
+      <div class="number" id="phoneNumber">
+        No number assigned
+      </div>
+
+      <button class="generate" onclick="generateNumber()">
+        Get Temporary Number
+      </button>
+
+      <button class="copy" onclick="copyNumber()">
+        Copy Number
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>SMS Inbox</h2>
+
+      <div class="inbox" id="inbox">
+        Waiting for incoming messages...
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function generateNumber() {
+      document.getElementById("phoneNumber").textContent =
+        "+1 202 555 0147";
+
+      document.getElementById("inbox").textContent =
+        "Your demo inbox is ready. Waiting for SMS...";
+    }
+
+    function copyNumber() {
+      const number =
+        document.getElementById("phoneNumber").textContent;
+
+      if (number === "No number assigned") {
+        alert("Get a temporary number first.");
+        return;
+      }
+
+      navigator.clipboard.writeText(number);
+      alert("Number copied!");
+    }
+  </script>
 
 </body>
 </html>
